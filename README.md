@@ -6,6 +6,7 @@ Scores and sounds for the CART 346 Digital Sound final projects: pieces for an e
 
 Each group owns **one folder** in `groups/`. That folder is the whole submission: `score.json`, the sounds in `audio/`, and a short README. Nothing else in the repository changes.
 
+
 ```
 CART346-FP/
 ├── index.html            opens the conductor
