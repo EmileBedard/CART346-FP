@@ -1,0 +1,54 @@
+# Builds the list of pieces (groups/index.json) and publishes the site.
+#   pull request → checks the pieces (score.json valid, sounds present, sizes);
+#                  problems show on the pull request's "Files changed" tab
+#   push to main → builds groups/index.json and deploys to GitHub Pages
+# Needs Settings → Pages → Build and deployment → Source: "GitHub Actions".
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/build-index.mjs --check
+
+  # Deploys only from the course repository: students' forks publish straight
+  # from their branch (Settings → Pages → Deploy from a branch) and test their
+  # piece with app/conductor.html?group=<folder>.
+  deploy:
+    if: github.event_name != 'pull_request' && github.repository == 'concordia-dcart/CART346-FP'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/build-index.mjs
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
