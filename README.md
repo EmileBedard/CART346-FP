@@ -3,7 +3,6 @@
 Scores and sounds for the CART 346 Digital Sound final projects: pieces for an ensemble of phones, after Steve Reich’s *It’s Gonna Rain* (1965). One laptop runs the conductor; every phone in the room is one voice.
 
 - **Conductor:** https://concordia-dcart.github.io/CART346-FP/ (every piece is in its Piece menu)
-- **Score editor:** https://concordia-dcart.github.io/CART346-FP/app/editor.html
 
 Each group owns **one folder** in `groups/`. That folder is the whole submission: `score.json`, the sounds in `audio/`, and a short README. Nothing else in the repository changes.
 
@@ -30,7 +29,7 @@ CART346-FP/
 1. **Fork** this repository once per group (one member forks; add your teammates under *Settings → Collaborators* so everyone can push).
 2. Turn on **GitHub Pages** in your fork: *Settings → Pages → Deploy from a branch → `main` / root*.
 3. **Copy `groups/_template/`** to `groups/<your-group-name>/`. Use lowercase and hyphens, no spaces or accents: `groups/tidal-machines/`.
-4. **Write the piece in the score editor** (`app/editor.html`, on your fork’s site or the live one). Fill in *Title*, *Group*, *Theme*, *Members* and *Credit*, add your sounds, write your events, and preview. **Download ZIP** gives a folder with `score.json` and `audio/`: put its contents in your group folder. You can also edit `score.json` by hand (start from the template).
+4. **Write your `score.json`**, starting from the template. Fill in `title`, `group`, `theme`, `members` and `credit`, put your sound files in `audio/` and name them in `sounds`, then write your `events` (see *score.json* below and the examples in `groups/00-examples/`). Any text editor works; one that checks JSON (VS Code, for instance) points out a missing comma or quote before you push.
 5. Fill in your folder’s `README.md`.
 6. **Test** on your fork’s site, with your folder name in the link:
    `https://<your-username>.github.io/CART346-FP/app/conductor.html?group=<your-group-name>`
@@ -62,7 +61,7 @@ The pull request is **checked automatically**: `score.json` must be valid, have 
 }
 ```
 
-`group`, `theme`, `members` and `credit` are shown under the conductor’s timeline and on every phone during your piece. Everything else (events, effects, effect changes) is explained in [app/README.md](app/README.md#the-score-format). The examples in `groups/00-examples/` are folders like yours: read their `score.json`, or open them in the score editor (*Open an example or a project…*) to see and hear how they’re written.
+`group`, `theme`, `members` and `credit` are shown under the conductor’s timeline and on every phone during your piece. Everything else (events, effects, effect changes) is explained in [app/README.md](app/README.md#the-score-format). The examples in `groups/00-examples/` are folders like yours: read their `score.json` to see how they’re written, and play them in the conductor to hear the result.
 
 ## Sound files
 
